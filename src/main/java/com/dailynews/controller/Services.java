@@ -97,20 +97,9 @@ public class Services {
 
         String urlWeather = "http://api.openweathermap.org/data/2.5/weather?q=Manisa,tr&units=metric&appid=843bf59b9493d4c944bbd3d4c56de054";
 
-        URL obj2 = new URL(urlWeather);
-        HttpURLConnection con2 = (HttpURLConnection) obj2.openConnection();
-        con2.setRequestMethod("GET");
-        con2.setRequestProperty("User-Agent", "Mozilla/5.0");
-        int responseCode2 = con2.getResponseCode();
-        if (responseCode2 == 200) {
-            StringWriter writer = new StringWriter();
-            IOUtils.copy(con2.getInputStream(), writer, "UTF-8");
-            String theString = writer.toString();
-            JSONObject jsonObj = new JSONObject(theString);
-            int weather = jsonObj.getJSONObject("main").getInt("temp");
-            return weather;
-        }
-        con2.disconnect();
-        return -1;
+        String body = Jsoup.connect(urlWeather).ignoreContentType(true).execute().body();
+        JSONObject jsonObj = new JSONObject(body);
+        int weather = jsonObj.getJSONObject("main").getInt("temp");
+        return weather;
     }
 }
