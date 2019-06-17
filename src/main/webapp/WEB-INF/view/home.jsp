@@ -250,7 +250,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img style="max-width: 100%;" src=${c.imageUrl}>
+                                    <a href="${c.link}" target="_blank"><img style="max-width: 100%;" src=${c.imageUrl}></a>
                                 </div>
                                 <div class="col-md-6" style="text-align: left; background-color: whitesmoke;">
                                     <a href="${c.link}" target="_blank"><h4 style="margin-top: 20px;">${c.header}</h4></a>

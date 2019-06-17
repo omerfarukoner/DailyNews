@@ -27,6 +27,10 @@ public class MainController {
     @RequestMapping(value = {"/", "/home"})
     public String Home(Model m) throws IOException {
 
+        m.addAttribute("currency", services.getCurrency());
+        m.addAttribute("weather", services.getWeather());
+        m.addAttribute("news", services.getNews());
+
         URL obj = new URL("https://dailynewsserver.herokuapp.com");
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         // optional default is GET
@@ -35,9 +39,6 @@ public class MainController {
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
 
-        m.addAttribute("currency", services.getCurrency());
-        m.addAttribute("weather", services.getWeather());
-        m.addAttribute("news", services.getNews());
         return "home";
     }
 }
