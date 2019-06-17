@@ -6,6 +6,9 @@
 package com.dailynews.controller;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,13 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/home"})
     public String Home(Model m) throws IOException {
+
+        URL obj = new URL("https://dailynewsserver.herokuapp.com");
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        // optional default is GET
+        con.setRequestMethod("GET");
+        //add request header
+        con.setRequestProperty("User-Agent", USER_AGENT);
 
         m.addAttribute("currency", services.getCurrency());
         m.addAttribute("weather", services.getWeather());
