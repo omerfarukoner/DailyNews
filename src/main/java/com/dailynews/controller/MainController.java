@@ -33,6 +33,7 @@ public class MainController {
         con.setRequestMethod("GET");
         //add request header
         con.setRequestProperty("User-Agent", USER_AGENT);
+        int responseCode = con.getResponseCode();
 
         m.addAttribute("currency", services.getCurrency());
         m.addAttribute("weather", services.getWeather());
