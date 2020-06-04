@@ -24,7 +24,7 @@ public class MainController {
     @Autowired
     private Services services;
 
-    @RequestMapping(value = {"/", "/home"})
+    @RequestMapping(value = {"/", "/home"}) // Test comment
     public String Home(Model m) throws IOException {
 
         m.addAttribute("currency", services.getCurrency());
